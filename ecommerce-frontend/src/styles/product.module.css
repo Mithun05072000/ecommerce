@@ -1,0 +1,46 @@
+/* products.module.css */
+
+.tableContainer {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f4f4f4;
+  }
+  
+  .button {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+  }
+  
+  .button:hover {
+    background-color: #005bb5;
+  }
+  
+  .link {
+    color: #0070f3;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  

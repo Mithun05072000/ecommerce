@@ -1,0 +1,30 @@
+/* edit-product.module.css */
+
+.formContainer {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formControl {
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input,
+  .textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+  }
+  
+  .textarea {
+    resize: vertical;
+  }
+  
