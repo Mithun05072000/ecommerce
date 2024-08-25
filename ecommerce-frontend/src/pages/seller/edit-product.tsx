@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 const buttonStyle = {
@@ -17,45 +17,18 @@ const buttonHoverStyle = {
 };
 
 const EditProduct = () => {
-  const router = useRouter();
-  const { id } = router.query;
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState<number | ''>('');
   const [discount, setDiscount] = useState<number | ''>('');
-
-  useEffect(() => {
-    if (id) {
-      const fetchProduct = async () => {
-        try {
-          const response = await fetch(`http://localhost:5000/seller/products/${id}`, {
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
-          });
-          if (response.ok) {
-            const product = await response.json();
-            setName(product.name);
-            setCategory(product.category);
-            setDescription(product.description);
-            setPrice(product.price);
-            setDiscount(product.discount);
-          } else {
-            console.error('Failed to fetch product');
-          }
-        } catch (error) {
-            console.error('Error fetching product:', error);
-        }
-      };
-
-      fetchProduct();
-    }
-  }, [id]);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:5000/seller/products/${id}`, {
+      const response = await fetch(`http://localhost:5000/seller/products/${router.query.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -67,44 +40,77 @@ const EditProduct = () => {
       if (response.ok) {
         router.push('/seller/products');
       } else {
-        console.error('Failed to update product');
+        console.error('Failed to edit product');
       }
     } catch (error) {
-      console.error('Error updating product:', error);
+      console.error('Error editing product:', error);
     }
   };
 
   return (
-    <div>
-      <h1>Edit Product</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold mb-8">Edit Product</h1>
+      <form onSubmit={handleSubmit} className="w-full max-w-md">
+        <div className="mb-4">
+          <label className="block text-gray-700">Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+          />
         </div>
-        <div>
-          <label>Category:</label>
-          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} required />
+        <div className="mb-4">
+          <label className="block text-gray-700">Category:</label>
+          <input
+            type="text"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+          />
         </div>
-        <div>
-          <label>Description:</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
+        <div className="mb-4">
+          <label className="block text-gray-700">Description:</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+          />
         </div>
-        <div>
-          <label>Price:</label>
-          <input type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} required />
+        <div className="mb-4">
+          <label className="block text-gray-700">Price:</label>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(Number(e.target.value))}
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+          />
         </div>
-        <div>
-          <label>Discount:</label>
-          <input type="number" value={discount} onChange={(e) => setDiscount(Number(e.target.value))} />
+        <div className="mb-4">
+          <label className="block text-gray-700">Discount:</label>
+          <input
+            type="number"
+            value={discount}
+            onChange={(e) => setDiscount(Number(e.target.value))}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+          />
         </div>
-        <button 
+        <button
           type="submit"
           style={buttonStyle}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor)}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'blue')}
+          onMouseOver={(e) =>
+            (e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor)
+          }
+          onMouseOut={(e) =>
+            (e.currentTarget.style.backgroundColor = buttonStyle.backgroundColor)
+          }
+          className="w-full"
         >
-          Update Product
+          Edit Product
         </button>
       </form>
     </div>

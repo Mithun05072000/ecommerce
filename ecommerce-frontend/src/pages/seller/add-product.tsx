@@ -48,57 +48,67 @@ const AddProduct = () => {
   };
 
   return (
-    <div>
-      <h1>Add New Product</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold mb-8">Add New Product</h1>
+      <form onSubmit={handleSubmit} className="w-full max-w-md">
+        <div className="mb-4">
+          <label className="block text-gray-700">Name:</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
           />
         </div>
-        <div>
-          <label>Category:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700">Category:</label>
           <input
             type="text"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
           />
         </div>
-        <div>
-          <label>Description:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700">Description:</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
           />
         </div>
-        <div>
-          <label>Price:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700">Price:</label>
           <input
             type="number"
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
             required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
           />
         </div>
-        <div>
-          <label>Discount:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700">Discount:</label>
           <input
             type="number"
             value={discount}
             onChange={(e) => setDiscount(Number(e.target.value))}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
           />
         </div>
         <button
           type="submit"
           style={buttonStyle}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor)}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = buttonStyle.backgroundColor)}
+          onMouseOver={(e) =>
+            (e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor)
+          }
+          onMouseOut={(e) =>
+            (e.currentTarget.style.backgroundColor = buttonStyle.backgroundColor)
+          }
+          className="w-full"
         >
           Add Product
         </button>

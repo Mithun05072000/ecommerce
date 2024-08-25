@@ -1,5 +1,3 @@
-// backend/src/routes/seller.ts
-
 import express from 'express';
 import pool from '../config/db';
 import authMiddleware from '../middleware/authMiddleware';
